@@ -17,7 +17,9 @@ public class App extends GameApplication {
 
     @Override
     protected void initSettings(GameSettings gameSettings) {
+
         gameSettings.setTitle("Pong");
+
     }
 
     public static void main(String[] args) {
@@ -26,7 +28,7 @@ public class App extends GameApplication {
 
     private static final int P_W = 10; //paddle width
     private static final int P_H = 100; //height
-    private static final int B_SIZE= 10; //ball size
+    private static final int B_SIZE= 15; //ball size
     private static final int P_SPD = 5; //paddle speed
     private static final int B_SPD = 1; //ball speed
 
@@ -55,33 +57,40 @@ public class App extends GameApplication {
         paddle2 = spawnPaddle(getAppWidth() - P_W, getAppHeight() / 2 - P_H / 2);
 
         ball = spawnBall(getAppWidth() / 2 - B_SIZE / 2, getAppHeight() / 2 - B_SIZE / 2);
+        getGameScene().setBackgroundRepeat("bg.png");
+
+        loopBGM("bgm.mp3");
     }
 
     private Entity spawnPaddle(double x, double y) {
         return entityBuilder()
+
                 .at(x, y) //create paddles at x, y
-                .viewWithBBox(new Rectangle(P_W, P_H)) //create the viewable object [rect]
+                .viewWithBBox(new Rectangle(P_W, P_H, Color.WHITESMOKE))//create the viewable object [rect]
                 .buildAndAttach(); //add paddles to game world
     }
 
     private Entity spawnBall(double x, double y) {
         return entityBuilder()
                 .at(x, y) //create ball at x, y
-                .viewWithBBox(new Rectangle(B_SIZE, B_SIZE)) //create viewable object
+                .viewWithBBox(new Rectangle(B_SIZE, B_SIZE, Color.WHITESMOKE)) //create viewable object
                 .with("velocity", new Point2D(B_SPD, B_SPD)) //new entity type "velocity"
                 .buildAndAttach(); //add ball to game world
+
+
     }
 
     @Override
     protected void initUI() {
-        Text textScore1 = getUIFactoryService().newText("", Color.BLACK, 22);
-        Text textScore2 = getUIFactoryService().newText("", Color.BLACK, 22);
+        Text textScore1 = getUIFactoryService().newText("", Color.WHITESMOKE, 22);
+        Text textScore2 = getUIFactoryService().newText("", Color.WHITESMOKE, 22);
 
         textScore1.textProperty().bind(getip("score1").asString());
         textScore2.textProperty().bind(getip("score2").asString());
 
         addUINode(textScore1, 10, 50);
         addUINode(textScore2, getAppWidth() - 30, 50);
+
     }
 
     @Override

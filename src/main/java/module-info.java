@@ -8,5 +8,7 @@ module com.example.pong_proj {
     requires com.almasb.fxgl.all;
 
     opens com.example.pong_proj to javafx.fxml;
+    opens assets.textures;
+    opens assets.music;
     exports com.example.pong_proj;
 }
