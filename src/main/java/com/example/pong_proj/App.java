@@ -19,6 +19,7 @@ public class App extends GameApplication {
     protected void initSettings(GameSettings gameSettings) {
 
         gameSettings.setTitle("Pong");
+        gameSettings.setAppIcon("");
 
     }
 
@@ -30,7 +31,7 @@ public class App extends GameApplication {
     private static final int P_H = 100; //height
     private static final int B_SIZE= 15; //ball size
     private static final int P_SPD = 5; //paddle speed
-    private static final int B_SPD = 1; //ball speed
+    private static final int B_SPD = 1  ; //ball speed
 
     private Entity paddle1, paddle2, ball; //FXGL Game Objects
 
@@ -41,11 +42,12 @@ public class App extends GameApplication {
 
         onKey(KeyCode.UP, () -> paddle2.translateY(-P_SPD));
         onKey(KeyCode.DOWN, () -> paddle2.translateY(P_SPD));
+
     }
 
     @Override
     protected void initGameVars(Map<String, Object> vars) {
-        //
+        //hash map
         vars.put("score1", 0);
         vars.put("score2", 0);
     }
